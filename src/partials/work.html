@@ -1,4 +1,4 @@
-<article class="work">
+<article class="work search">
     <form class="search-form" id="search-form">
         <input 
         type="text" 
@@ -11,10 +11,13 @@
     <ul class="gallery js-photos-gallery">
         <!-- Список <li> с карточками изображений -->
     </ul>
+    <div class="lightbox">
+        <img class="modal-img" alt="">
+        <button type="button" class="invisible" data-action="close-lightbox"></button>
+    </div>
     <button 
-    class="button" 
+    class="button button-wrapper" 
     type="button" 
     disabled="true" 
-    data-action="load">Load more
-    </button>
+    data-action="load">Load more</button>
 </article>
