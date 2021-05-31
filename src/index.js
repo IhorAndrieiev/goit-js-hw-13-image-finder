@@ -25,6 +25,7 @@ function onFormSearch(e) {
     
     if (newsApiService.query.trim() === '') {
         refs.loadMoreBtn.disabled = true;
+        refs.loadMoreBtn.classList.add('is-hidden')
          return info({
       text: 'Ведите что нибудь!!',
       delay: 4000,
