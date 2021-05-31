@@ -33,6 +33,7 @@ function onFormSearch(e) {
     }
     
     refs.loadMoreBtn.disabled = false;
+    refs.loadMoreBtn.classList.remove('is-hidden')
     clearList();
     newsApiService.resetPage();
     newsApiService.fetchImage()

@@ -167,8 +167,19 @@ span {
   display: flex;
   text-align: center;
   margin-top: 10px;
+  margin-left: 100px;
+  margin-bottom: 30px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
 }
-
+.button-wrapper:hover {
+  background: rgba(43, 62, 148, 0.5);
+}
+.button-wrapper.is-hidden {
+  display: none;
+}
 .add-more {
   visibility: hidden;
   background: rgba(238, 238, 238, 0.247);
