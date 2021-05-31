@@ -100,69 +100,69 @@ loadMoreButtonRef.addEventListener('click', () => {
 //     btnMuchMore: document.querySelector('[data-action=load]'),
 // }
 
-// refs.searchForm.addEventListener('submit', onFormSearch);
+refs.searchForm.addEventListener('submit', onFormSearch);
 
-// const apiService = new ApiService();
+const apiService = new ApiService();
 
-// function onFormSearch(e) {
-//     e.preventDefault();
-//     clearList();
+function onFormSearch(e) {
+    e.preventDefault();
+    clearList();
     
-//     apiService.query = e.currentTarget.elements.query.value;
-    // const searchQuery = e.target.elements.query.value;
-    //     console.log(searchQuery)
-    // API.fetchPhotos(searchQuery.trim())
-    //     .then(renderCountriesCard)
-    //     .catch(onFetchError)
+    apiService.query = e.currentTarget.elements.query.value;
+    const searchQuery = e.target.elements.query.value;
+        console.log(searchQuery)
+    API.fetchPhotos(searchQuery.trim())
+        .then(renderCountriesCard)
+        .catch(onFetchError)
 
-//     if (apiService.query.trim() === '') {
-//         refs.btnMuchMore.disabled = true;
-//          return info({
-//       text: 'Ведите что нибудь!!',
-//       delay: 1500,
-//       closerHover: true,
-//     });
-//     }
-//     refs.btnMuchMore.disabled = false;
-//     apiService.resetPage();
-//     refs.photoGalleryUl.innerHTML = '';
-//     fetchCreateMarcupLoadMore();
-// }
+    if (apiService.query.trim() === '') {
+        refs.btnMuchMore.disabled = true;
+         return info({
+      text: 'Ведите что нибудь!!',
+      delay: 1500,
+      closerHover: true,
+    });
+    }
+    refs.btnMuchMore.disabled = false;
+    apiService.resetPage();
+    refs.photoGalleryUl.innerHTML = '';
+    fetchCreateMarcupLoadMore();
+}
 
-// async function fetchCreateMarcupLoadMore() {
-//   try {
-//     const hits = await apiService.searchImages();
-//     markup(hits);
-//     const standartL = refs.photoGalleryUl.children.length;
+async function fetchCreateMarcupLoadMore() {
+  try {
+    const hits = await apiService.searchImages();
+    markup(hits);
+    const standartL = refs.photoGalleryUl.children.length;
 
-//     // if (standartL !== 0) {
-//     //   const getTop = standartL - 12;
-//     //   const name = containerCard.children[`${getTop}`];
-//     //   console.log(getTop);
-//     //   window.scrollTo({
-//     //     top: name,
-//     //     left: 0,
-//     //     behavior: 'smooth',
-//     //   });
-//     // }
-//     const getTop = standartL - 12;
-//     animateScrollTo(refs.photoGalleryUl.children[`${getTop}`], {
-//       speed: 500,
-//       maxDuration: 3000,
-//       verticalOffset: -20,
-//     });
-//     if (hits.length === 0) {
-//       btnEl.disabled = true;
-//     }
-//   } catch (error) {
-//     console.warn(error);
-//   }
-// }
+    // if (standartL !== 0) {
+    //   const getTop = standartL - 12;
+    //   const name = containerCard.children[`${getTop}`];
+    //   console.log(getTop);
+    //   window.scrollTo({
+    //     top: name,
+    //     left: 0,
+    //     behavior: 'smooth',
+    //   });
+    // }
+    const getTop = standartL - 12;
+    animateScrollTo(refs.photoGalleryUl.children[`${getTop}`], {
+      speed: 500,
+      maxDuration: 3000,
+      verticalOffset: -20,
+    });
+    if (hits.length === 0) {
+      btnEl.disabled = true;
+    }
+  } catch (error) {
+    console.warn(error);
+  }
+}
 
-// function markup(data) {
-//   const cards = fotoCard(data);
-//   refs.photoGalleryUl.insertAdjacentHTML('beforeend', cards);
-// }
-// function clearList() {
-//   refs.photoGalleryUl.innerHTML = '';
-// }
+function markup(data) {
+  const cards = fotoCard(data);
+  refs.photoGalleryUl.insertAdjacentHTML('beforeend', cards);
+}
+function clearList() {
+  refs.photoGalleryUl.innerHTML = '';
+}
