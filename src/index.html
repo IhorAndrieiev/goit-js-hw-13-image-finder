@@ -16,8 +16,23 @@
   <body>
     <!-- Так добавляются фрагменты в главные HTML-файлы страниц. -->
     <!-- <include src="./partials/example.html"></include> -->
-     <include src="./partials/work.html"></include> 
+     <!-- <include src="./partials/work.html"></include>  -->
+  <article class="work search">
+    <form class="search-form" id="search-form">
+      <input type="text" name="query" autocomplete="off" placeholder="Search images..." />
+      <!-- <button type="submit" class="btn btn-primary">Искать</button> -->
+    </form>
   
+    <ul class="gallery js-photos-gallery">
+      <!-- Список <li> с карточками изображений -->
+    </ul>
+    <div class="lightbox">
+      <img class="modal-img" alt="">
+      <button type="button" class="invisible" data-action="close-lightbox"></button>
+    </div>
+    <button class="button button-wrapper" type="button" disabled="true" data-action="load-more">Load more Показать
+      ещё</button>
+  </article>
     <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
     <script src="./index.js"></script>
   </body>
