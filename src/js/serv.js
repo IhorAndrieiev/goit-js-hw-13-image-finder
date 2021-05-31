@@ -9,7 +9,7 @@ export default class NewApiService {
     }
     
      fetchImage() {
-    const url = `${BASE_URL}image_type=photo&orientation=horizontal&q=${this.search}&page=${this.page}&per_page=${this.per_page}&${MY_KEY}`;
+    const url = `${BASE_URL}image_type=photo&orientation=horizontal&q=${this.query}&page=${this.page}&per_page=${this.per_page}&${MY_KEY}`;
          return fetch(url)
              .then(res => res.json())
              .then(({ hits }) => {

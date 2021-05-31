@@ -6,31 +6,23 @@ import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
 import NewsApiService from './js/serv'
-import imgMarkup from './templates/photo-card.hbs';
+//import imgMarkup from './templates/photo-card.hbs';
 import * as basicLightbox from 'basiclightbox';
+import renderFotosCard from './js/markup'
+import refs from'./js/refs'
 
-
-
-
-const refs = {
-    searchForm: document.querySelector(".search-form"),
-
-    photoGalleryUl: document.querySelector(".js-photos-gallery"),
-    imputSearh: document.querySelector('[name=query]'),
-    loadMoreBtn: document.querySelector('[data-action="load-more"]'),
-};
 
 refs.searchForm.addEventListener('submit', onFormSearch);
  
 const newsApiService = new NewsApiService();
 
+
+
 function onFormSearch(e) {
     e.preventDefault();
+      
+    newsApiService.query = e.target.elements.query.value; //callback //const searchQuery = e.target.elements.query.value; //console.log(searchQuery)
     
-    
-    newsApiService.query = e.target.elements.query.value; //callback
-    //const searchQuery = e.target.elements.query.value;
-        //console.log(searchQuery)
     if (newsApiService.query.trim() === '') {
         refs.loadMoreBtn.disabled = true;
          return info({
@@ -50,17 +42,9 @@ function onFormSearch(e) {
     e.target.reset();
 }
 
-function renderFotosCard(hits) {
-    if (hits.length < 1) {
-        refs.loadMoreBtn.disabled = true;
-        error({
-                text: 'Ведите другой запрос, такого запроса нет!',
-                daily: 4000,
-                closerHover: true,
-            });
-    }
-    refs.photoGalleryUl.insertAdjacentHTML('beforeend', imgMarkup(hits));
-}
+
+
+
 
 
 function clearList() {
@@ -76,13 +60,21 @@ function onFetchError(error) {
          //alert('error набери больше букв')
 }
 
-// onLoadMore();
+
  refs.loadMoreBtn.addEventListener('click', onLoadMore);    
 function onLoadMore () {
-  newsApiService.fetchImage().then(renderFotosCard)
+    newsApiService.fetchImage().then(renderFotosCard);
+    setTimeout(()=> {
+        scrollToBottom();
+    }, 300)
 }
 
-
+function scrollToBottom() {
+    refs.loadMoreBtn.scrollIntoView({
+    behavior: 'smooth',
+    block: 'end',
+});
+}
 
 // async function fetchCreateMarcupLoadMore() {
 //   try {
